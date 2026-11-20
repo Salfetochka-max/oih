@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ГрузСпецСервис — Ремонт и обслуживание грузовых автомобилей в Саратове</title>
+    <meta name="description" content="Профессиональный ремонт грузовых автомобилей в Саратове и Саратовской области, выездная диагностика, эвакуатор, запчасти. Гарантия качества, опыт 15 лет.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #e63329;
+            --primary-dark: #c0241b;
+            --dark: #1a1a1a;
+            --dark-2: #232323;
+            --gray: #6b7280;
+            --light: #f5f6f8;
+            --white: #ffffff;
+            --border: #e5e7eb;
+            --success: #16a34a;
+            --radius: 14px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --bg-body: #1a1a1a;
+            --bg-section: #232323;
+            --bg-card: #2a2a2a;
+            --bg-card-alt: #2f2f2f;
+            --text-main: #ffffff;
+            --text-muted: #b0b0b0;
+            --text-soft: #d4d4d4;
+            --border-color: #333333;
+            --header-bg: rgba(26, 26, 26, 0.95);
+            --header-bg-scrolled: rgba(26, 26, 26, 0.98);
+            --footer-bg: #0e0e0e;
+            --input-bg: #2a2a2a;
+            --input-border: #444444;
+            --input-text: #ffffff;
+            --ai-body-bg: #fafafa;
+            --ai-body-text: #222222;
+            --ai-msg-bot-bg: #ffffff;
+            --ai-msg-bot-text: #222222;
+            --ai-msg-bot-border: #eeeeee;
+            --calc-bg: #2a2a2a;
+            --calc-border: #444444;
+            --calc-result-bg: #1f1f1f;
+            --calc-highlight: #e63329;
+        }
+
+        body.light-theme {
+            --bg-body: #ffffff;
+            --bg-section: #f5f6f8;
+            --bg-card: #ffffff;
+            --bg-card-alt: #f9fafb;
+            --text-main: #1a1a1a;
+            --text-muted: #6b7280;
+            --text-soft: #4b5563;
+            --border-color: #e5e7eb;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-bg-scrolled: rgba(255, 255, 255, 0.98);
+            --footer-bg: #f0f0f0;
+            --input-bg: #ffffff;
+            --input-border: #d1d5db;
+            --input-text: #1a1a1a;
+            --ai-body-bg: #f5f6f8;
+            --ai-body-text: #1a1a1a;
+            --ai-msg-bot-bg: #ffffff;
+            --ai-msg-bot-text: #1a1a1a;
+            --ai-msg-bot-border: #e5e7eb;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.1);
+            --calc-bg: #ffffff;
+            --calc-border: #d1d5db;
+            --calc-result-bg: #f5f6f8;
+            --calc-highlight: #c0241b;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background: var(--bg-body);
+            overflow-x: hidden;
+            transition: background 0.35s ease, color 0.35s ease;
+        }
+
+        h1, h2, h3, h4, .btn, .stat-num {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 0; }
+
+        .section-title { text-align: center; font-size: 38px; margin-bottom: 15px; color: var(--text-main); transition: color 0.35s ease; }
+        .section-subtitle { text-align: center; color: var(--text-muted); font-size: 17px; margin-bottom: 50px; max-width: 650px; margin-left: auto; margin-right: auto; transition: color 0.35s ease; }
+
+        .btn {
+            display: inline-block; padding: 16px 36px; border-radius: 50px; font-size: 16px; font-weight: 700;
+            text-decoration: none; cursor: pointer; border: none; transition: all 0.3s ease; text-align: center;
+        }
+
+        .btn-primary { background: var(--primary); color: var(--white); box-shadow: 0 8px 20px rgba(230, 51, 41, 0.35); }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(230, 51, 41, 0.45); }
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+        .btn-outline:hover { background: var(--white); color: var(--dark); }
+
+        /* ===== ШАПКА ===== */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: var(--header-bg); backdrop-filter: blur(10px); transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 20px; }
+
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+
+        .logo-mark {
+            width: 46px; height: 46px; background: var(--primary); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: var(--white); flex-shrink: 0;
+        }
+
+        .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+        .logo-text strong { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 0.3px; }
+        .logo-text span { font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+
+        nav ul { display: flex; gap: 28px; list-style: none; }
+        nav a { color: var(--text-soft); text-decoration: none; font-size: 15px; font-weight: 600; transition: color 0.2s; }
+        nav a:hover { color: var(--primary); }
+
+        .header-phone { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+        .header-phone a { color: var(--text-main); text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; transition: color 0.2s; }
+        .header-phone a:hover { color: var(--primary); }
+        .header-phone small { color: var(--text-muted); font-size: 11px; }
+
+        .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+        .burger span { width: 26px; height: 3px; background: var(--text-main); border-radius: 2px; transition: all 0.3s; }
+
+        .mobile-menu {
+            display: none; position: fixed; top: 78px; left: 0; right: 0; background: var(--bg-section);
+            padding: 20px; z-index: 999; flex-direction: column; gap: 15px; box-shadow: var(--shadow-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-main); text-decoration: none; font-size: 17px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid var(--border-color); }
+
+        /* ===== ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ ===== */
+        .theme-toggle-wrap {
+            display: flex;
+            align-items: center;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: scale(1.08);
+        }
+
+        /* ===== ГЛАВНЫЙ ЭКРАН ===== */
+        .hero {
+            position: relative; min-height: 100vh; display: flex; align-items: center;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.92) 0%, rgba(35, 35, 35, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1586191582151-f73872dfd183?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            padding: 120px 0 80px; color: var(--white);
+        }
+
+        body.light-theme .hero {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(245, 246, 248, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1586191582151-f73872dfd183?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: var(--text-main);
+        }
+
+        body.light-theme .hero .btn-outline {
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        body.light-theme .hero .btn-outline:hover {
+            background: var(--text-main);
+            color: var(--bg-body);
+        }
+
+        body.light-theme .hero p { color: var(--text-soft); }
+        body.light-theme .hero-feature { color: var(--text-soft); }
+        body.light-theme .hero-badge { color: var(--primary-dark); background: rgba(230, 51, 41, 0.12); }
+
+        .hero-content { max-width: 720px; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(230, 51, 41, 0.15); border: 1px solid rgba(230, 51, 41, 0.4); color: #ffb3ae;
+            padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 600;
+            margin-bottom: 25px; letter-spacing: 0.5px; text-transform: uppercase;
+            transition: all 0.35s ease;
+        }
+
+        .hero-badge::before {
+            content: ''; width: 8px; height: 8px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .hero h1 { font-size: 52px; margin-bottom: 22px; font-weight: 800; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 19px; color: #cfcfcf; margin-bottom: 35px; max-width: 600px; }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 50px; }
+        .hero-features { display: flex; gap: 30px; flex-wrap: wrap; }
+        .hero-feature { display: flex; align-items: center; gap: 10px; font-size: 15px; color: #e0e0e0; }
+        .hero-feature svg { color: var(--primary); flex-shrink: 0; }
+
+        /* ===== УСЛУГИ ===== */
+        .services { background: var(--bg-section); transition: background 0.35s ease; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+
+        .service-card {
+            background: var(--bg-card); border-radius: var(--radius); padding: 36px 30px;
+            transition: all 0.3s ease; border: 1px solid var(--border-color); position: relative; overflow: hidden;
+        }
+
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+        }
+
+        .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-icon {
+            width: 64px; height: 64px; background: rgba(230, 51, 41, 0.12); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 22px; color: var(--primary);
+        }
+
+        .service-card h3 { font-size: 21px; margin-bottom: 12px; color: var(--text-main); transition: color 0.35s ease; }
+        .service-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 18px; }
+        .service-price { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--primary); font-size: 17px; margin-bottom: 5px; }
+
+        /* ===== ПРЕИМУЩЕСТВА ===== */
+        .advantages { background: var(--bg-body); transition: background 0.35s ease; }
+        .advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+        .advantage { text-align: center; padding: 20px; }
+
+        .advantage-icon {
+            width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 22px; color: var(--white); box-shadow: 0 10px 25px rgba(230, 51, 41, 0.3);
+        }
+
+        .advantage h3 { font-size: 19px; margin-bottom: 10px; color: var(--text-main); }
+        .advantage p { color: var(--text-muted); font-size: 15px; }
+
+        /* ===== ВИДЖЕТ "ВЫЕЗД ЗА 30 МИНУТ" ===== */
+        .zones-section { background: var(--bg-body); transition: background 0.35s ease; }
+        .zones-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center; }
+        .zones-info h3 { font-size: 30px; margin-bottom: 16px; color: var(--text-main); }
+        .zones-info h3 span { color: var(--primary); }
+        .zones-info > p { color: var(--text-muted); font-size: 16px; margin-bottom: 26px; }
+        .zones-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+        .zone-row {
+            display: flex; align-items: center; gap: 16px; padding: 16px 18px;
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius);
+            cursor: pointer; transition: all 0.25s ease;
+        }
+        .zone-row:hover, .zone-row.active {
+            border-color: var(--primary); background: rgba(230, 51, 41, 0.07); transform: translateX(6px);
+        }
+        .zone-dot { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; position: relative; }
+        .zone-dot::after {
+            content: ''; position: absolute; inset: -6px; border-radius: 50%;
+            border: 2px solid currentColor; opacity: 0.35; animation: zonePulse 2s infinite;
+        }
+        @keyframes zonePulse {
+            0% { transform: scale(0.7); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .zone-dot.z30 { background: #16a34a; color: #16a34a; }
+        .zone-dot.z60 { background: #f59e0b; color: #f59e0b; }
+        .zone-dot.z90 { background: #e63329; color: #e63329; }
+        .zone-row .zone-text strong {
+            display: block; font-family: 'Montserrat', sans-serif; font-size: 16px;
+            color: var(--text-main); margin-bottom: 2px;
+        }
+        .zone-row .zone-text small { color: var(--text-muted); font-size: 13px; }
+        .zone-time-badge {
+            margin-left: auto; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+            padding: 6px 14px; border-radius: 50px; background: rgba(230, 51, 41, 0.12);
+            color: var(--primary); white-space: nowrap;
+        }
+        .zones-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        .zones-map {
+            position: relative; aspect-ratio: 1 / 1; max-width: 560px; margin: 0 auto; width: 100%;
+            border-radius: 20px;
+            background:
+                radial-gradient(circle at 50% 50%, rgba(230, 51, 41, 0.06) 0%, transparent 70%),
+                var(--bg-section);
+            border: 1px solid var(--border-color); overflow: hidden; box-shadow: var(--shadow);
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+        .zones-map .zone-ring {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border-radius: 50%; border: 2px dashed; cursor: pointer;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+        }
+        .zones-map .zone-ring::before {
+            content: attr(data-label); position: absolute; font-size: 11px; font-weight: 700;
+            font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px; padding: 3px 10px;
+            border-radius: 50px; background: var(--bg-card); border: 1px solid var(--border-color);
+            color: var(--text-muted); top: 8%; white-space: nowrap;
+        }
+        .zone-ring.r30 { width: 40%; height: 40%; border-color: rgba(22, 163, 74, 0.6); background: rgba(22, 163, 74, 0.08); }
+        .zone-ring.r60 { width: 70%; height: 70%; border-color: rgba(245, 158, 11, 0.55); background: rgba(245, 158, 11, 0.06); }
+        .zone-ring.r90 { width: 98%; height: 98%; border-color: rgba(230, 51, 41, 0.45); background: rgba(230, 51, 41, 0.04); }
+        .zone-ring:hover, .zone-ring.active { box-shadow: inset 0 0 40px rgba(230, 51, 41, 0.15); filter: brightness(1.15); }
+        .zones-map .map-center {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 46px; height: 46px; background: var(--primary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #fff; z-index: 5;
+            box-shadow: 0 0 0 6px rgba(230, 51, 41, 0.2), 0 8px 20px rgba(230, 51, 41, 0.4); font-size: 20px;
+        }
+        .zones-map .map-center::after {
+            content: ''; position: absolute; inset: -8px; border-radius: 50%;
+            border: 2px solid var(--primary); animation: centerPulse 2s infinite;
+        }
+        @keyframes centerPulse {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+        .map-pin {
+            position: absolute; width: 12px; height: 12px; border-radius: 50%;
+            background: var(--text-soft); border: 2px solid var(--bg-card); z-index: 4;
+            transition: all 0.25s ease; cursor: pointer;
+        }
+        .map-pin:hover { transform: scale(1.6); background: var(--primary); }
+        .map-pin::after {
+            content: attr(data-name); position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+            font-size: 10px; font-weight: 600; white-space: nowrap; padding: 2px 7px; border-radius: 5px;
+            background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-soft);
+            opacity: 0; pointer-events: none; transition: opacity 0.2s;
+        }
+        .map-pin:hover::after { opacity: 1; }
+        .zone-tooltip {
+            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: var(--bg-card); border: 1.5px solid var(--primary); border-radius: 12px;
+            padding: 12px 18px; text-align: center; z-index: 10; opacity: 0; pointer-events: none;
+            transition: all 0.3s ease; min-width: 220px; box-shadow: var(--shadow-lg);
+        }
+        .zone-tooltip.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .zone-tooltip strong { display: block; font-family: 'Montserrat', sans-serif; font-size: 15px; color: var(--text-main); margin-bottom: 3px; }
+        .zone-tooltip span { font-size: 12px; color: var(--text-muted); }
+        .zone-tooltip .tt-time {
+            display: inline-block; margin-top: 8px; padding: 4px 12px; border-radius: 50px;
+            background: rgba(230, 51, 41, 0.12); color: var(--primary); font-weight: 700;
+            font-family: 'Montserrat', sans-serif; font-size: 13px;
+        }
+        @media (max-width: 1024px) {
+            .zones-wrap { grid-template-columns: 1fr; }
+            .zones-map { max-width: 460px; }
+        }
+        @media (max-width: 768px) {
+            .zones-info h3 { font-size: 24px; }
+            .zone-time-badge { font-size: 13px; padding: 5px 10px; }
+            .zones-map .zone-ring::before { font-size: 9px; top: 5%; }
+            .zones-cta .btn { width: 100%; }
+        }
+
+        /* ===== БЛОК ДОВЕРИЯ ===== */
+        .trust { background: var(--bg-section); transition: background 0.35s ease; }
+        .trust .section-title { color: var(--text-main); }
+        .trust .section-subtitle { color: var(--text-muted); }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 70px; }
+
+        .stat {
+            text-align: center; padding: 30px 20px; background: var(--bg-card);
+            border: 1px solid var(--border-color); border-radius: var(--radius); transition: all 0.3s;
+        }
+
+        .stat:hover { background: rgba(230, 51, 41, 0.08); border-color: rgba(230, 51, 41, 0.3); }
+        .stat-num { font-size: 46px; color: var(--primary); margin-bottom: 8px; }
+        .stat p { color: var(--text-muted); font-size: 15px; }
+
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 70px; }
+
+        .review-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius); padding: 30px;
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+
+        .review-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+
+        .review-avatar {
+            width: 52px; height: 52px; border-radius: 50%; background: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); flex-shrink: 0;
+        }
+
+        .review-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 2px; color: var(--text-main); }
+        .review-stars { color: #fbbf24; font-size: 14px; letter-spacing: 2px; }
+        .review-text { color: var(--text-muted); font-size: 15px; font-style: italic; }
+
+        .before-after-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .ba-card { border-radius: var(--radius); overflow: hidden; position: relative; background: var(--bg-card-alt); }
+        .ba-images { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+        .ba-img { position: relative; aspect-ratio: 1 / 1; overflow: hidden; }
+        .ba-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .ba-card:hover .ba-img img { transform: scale(1.05); }
+
+        .ba-label {
+            position: absolute; top: 12px; left: 12px; padding: 5px 12px; border-radius: 6px;
+            font-size: 12px; font-weight: 700; font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase; letter-spacing: 0.5px; z-index: 2;
+        }
+
+        .ba-label.before { background: rgba(0, 0, 0, 0.7); color: #fff; }
+        .ba-label.after { background: var(--primary); color: #fff; }
+        .ba-caption { padding: 18px; text-align: center; font-size: 14px; color: var(--text-muted); }
+
+        /* ===== ФОРМА ЗАЯВКИ ===== */
+        .form-section { background: var(--bg-section); transition: background 0.35s ease; }
+
+        .form-wrap {
+            max-width: 820px; margin: 0 auto; background: var(--bg-card); border-radius: 20px;
+            box-shadow: var(--shadow-lg); padding: 50px; position: relative;
+            transition: background 0.35s ease;
+        }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-group label { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
+        .form-group label span { color: var(--primary); }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 14px 16px; border: 1.5px solid var(--input-border); border-radius: 10px;
+            font-family: inherit; font-size: 15px; color: var(--input-text); background: var(--input-bg);
+            transition: all 0.2s; width: 100%;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: var(--text-muted); opacity: 0.7; }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(230, 51, 41, 0.12);
+        }
+
+        .form-group textarea { resize: vertical; min-height: 100px; }
+
+        .file-upload {
+            position: relative; border: 2px dashed var(--input-border); border-radius: 10px; padding: 22px;
+            text-align: center; cursor: pointer; transition: all 0.2s; background: var(--bg-card-alt);
+        }
+
+        .file-upload:hover { border-color: var(--primary); background: rgba(230, 51, 41, 0.04); }
+        .file-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+        .file-upload-icon { color: var(--primary); margin-bottom: 8px; }
+        .file-upload-text { font-size: 14px; color: var(--text-muted); }
+        .file-upload-text strong { color: var(--primary); font-weight: 700; }
+        .file-name { display: block; margin-top: 8px; font-size: 13px; color: var(--success); font-weight: 600; word-break: break-all; }
+
+        .form-submit { margin-top: 26px; }
+        .form-submit .btn { width: 100%; padding: 18px; font-size: 17px; }
+        .form-note { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 16px; }
+
+        .confirmation { display: none; text-align: center; padding: 30px 10px; animation: fadeIn 0.5s ease; }
+        .confirmation.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .confirmation-icon {
+            width: 90px; height: 90px; background: rgba(22, 163, 74, 0.12); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+            color: var(--success); animation: scaleIn 0.4s ease;
+        }
+
+        @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
+
+        .confirmation h3 { font-size: 26px; margin-bottom: 12px; color: var(--text-main); }
+        .confirmation p { color: var(--text-muted); font-size: 16px; margin-bottom: 8px; }
+
+        .confirmation .time-badge {
+            display: inline-block; background: rgba(230, 51, 41, 0.12); color: var(--primary);
+            padding: 12px 28px; border-radius: 50px; font-family: 'Montserrat', sans-serif;
+            font-weight: 700; font-size: 18px; margin: 20px 0;
+        }
+
+        .confirmation .btn { margin-top: 10px; }
+
+        /* ===== КАЛЬКУЛЯТОР РЕМОНТА ===== */
+        .calc-section {
+            background: var(--bg-section);
+            padding: 80px 0;
+            transition: background 0.35s ease;
+        }
+        .calc-wrap {
+            max-width: 820px;
+            margin: 0 auto;
+            background: var(--calc-bg);
+            border: 1px solid var(--calc-border);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+        .calc-wrap h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            text-align: center;
+        }
+        .calc-wrap .calc-desc {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .calc-group.full { grid-column: 1 / -1; }
+        .calc-group label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        .calc-group select,
+        .calc-group input[type="number"] {
+            padding: 14px 16px;
+            border: 1.5px solid var(--input-border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--input-text);
+            background: var(--input-bg);
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .calc-group select:focus,
+        .calc-group input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(230, 51, 41, 0.12);
+        }
+        .calc-checks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 4px;
+        }
+        .calc-check {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-main);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .calc-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+        .calc-result {
+            margin-top: 28px;
+            padding: 24px;
+            background: var(--calc-result-bg);
+            border: 1.5px solid var(--calc-border);
+            border-radius: 14px;
+            text-align: center;
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+        .calc-result .calc-total-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .calc-result .calc-total {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+            word-break: break-word;
+        }
+        .calc-result .calc-total small {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        .calc-result .calc-detail {
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .calc-note {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .calc-apply {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+        }
+        .calc-apply .btn {
+            padding: 14px 30px;
+            font-size: 15px;
+        }
+
+        /* ===== РАСШИРЕНИЕ ВЕРХА КАЛЬКУЛЯТОРА ===== */
+        .calc-head {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--calc-border);
+        }
+        .calc-head-text h3 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            text-align: left;
+        }
+        .calc-head-text p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin: 0;
+        }
+        .calc-head-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .calc-head-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--calc-result-bg);
+            border: 1px solid var(--calc-border);
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .calc-head-badge svg { color: var(--primary); flex-shrink: 0; }
+        .calc-head-badge span { color: var(--text-muted); font-weight: 400; font-size: 13px; }
+
+        /* ===== ЗАЯВКА НА КОРПОРАТИВНОЕ ОБСЛУЖИВАНИЕ ===== */
+        .corp-section {
+            background: var(--bg-body);
+            transition: background 0.35s ease;
+        }
+        .corp-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 44px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+        .corp-wrap::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        }
+        .corp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(230, 51, 41, 0.12);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .corp-wrap h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+        .corp-wrap .corp-desc {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 28px;
+            max-width: 640px;
+        }
+        .corp-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        .corp-benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 14px;
+            background: var(--bg-card-alt);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-main);
+            transition: all 0.25s ease;
+        }
+        .corp-benefit:hover {
+            border-color: var(--primary);
+            background: rgba(230, 51, 41, 0.05);
+        }
+        .corp-benefit svg { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+        .corp-benefit strong { display: block; font-family: 'Montserrat', sans-serif; font-size: 14px; margin-bottom: 2px; }
+        .corp-benefit small { color: var(--text-muted); font-size: 12px; }
+
+        .corp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .corp-group { display: flex; flex-direction: column; }
+        .corp-group.full { grid-column: 1 / -1; }
+        .corp-group label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        .corp-group label span { color: var(--primary); }
+        .corp-group input,
+        .corp-group select,
+        .corp-group textarea {
+            padding: 14px 16px;
+            border: 1.5px solid var(--input-border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--input-text);
+            background: var(--input-bg);
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .corp-group input:focus,
+        .corp-group select:focus,
+        .corp-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(230, 51, 41, 0.12);
+        }
+        .corp-group textarea { resize: vertical; min-height: 90px; }
+        .corp-group input::placeholder,
+        .corp-group textarea::placeholder { color: var(--text-muted); opacity: 0.7; }
+
+        .corp-submit {
+            margin-top: 26px;
+        }
+        .corp-submit .btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 17px;
+        }
+        .corp-note {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 14px;
+        }
+        .corp-confirmation {
+            display: none;
+            text-align: center;
+            padding: 20px 10px;
+            animation: fadeIn 0.5s ease;
+        }
+        .corp-confirmation.active { display: block; }
+        .corp-confirmation .confirmation-icon {
+            width: 90px;
+            height: 90px;
+            background: rgba(22, 163, 74, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--success);
+        }
+        .corp-confirmation h3 { font-size: 26px; margin-bottom: 12px; color: var(--text-main); }
+        .corp-confirmation p { color: var(--text-muted); font-size: 16px; margin-bottom: 8px; }
+        .corp-confirmation .time-badge {
+            display: inline-block;
+            background: rgba(230, 51, 41, 0.12);
+            color: var(--primary);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        /* ===== КОНТАКТЫ ===== */
+        .contacts { background: var(--bg-body); color: var(--text-main); transition: background 0.35s ease, color 0.35s ease; }
+        .contacts .section-title { color: var(--text-main); }
+        .contacts .section-subtitle { color: var(--text-muted); }
+        .contacts-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
+        .contact-info { display: flex; flex-direction: column; gap: 20px; }
+
+        .contact-item {
+            display: flex; gap: 18px; padding: 24px; background: var(--bg-card);
+            border: 1px solid var(--border-color); border-radius: var(--radius); transition: all 0.3s;
+        }
+
+        .contact-item:hover { background: rgba(230, 51, 41, 0.06); border-color: rgba(230, 51, 41, 0.25); }
+
+        .contact-icon {
+            width: 52px; height: 52px; background: var(--primary); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; color: var(--white); flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+            margin-bottom: 6px; font-weight: 600;
+        }
+
+        .contact-item a,
+        .contact-item p {
+            color: var(--text-main); text-decoration: none; font-size: 17px; font-weight: 600;
+            font-family: 'Montserrat', sans-serif; transition: color 0.2s;
+        }
+
+        .contact-item a:hover { color: var(--primary); }
+        .contact-item small { display: block; color: var(--text-muted); font-size: 13px; margin-top: 4px; font-weight: 400; font-family: 'Open Sans', sans-serif; }
+
+        .map-wrap { border-radius: var(--radius); overflow: hidden; min-height: 380px; border: 1px solid var(--border-color); }
+        .map-wrap iframe { width: 100%; height: 100%; min-height: 380px; border: none; display: block; filter: grayscale(0.3) contrast(1.05); }
+
+        /* ===== ПЛАВАЮЩИЕ ВИДЖЕТЫ ===== */
+        .floating-widgets {
+            position: fixed; right: 20px; bottom: 20px; z-index: 900;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+
+        .widget-btn {
+            width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: var(--white); text-decoration: none; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease; position: relative;
+        }
+
+        .widget-btn:hover { transform: scale(1.1); }
+        .widget-btn.phone { background: var(--primary); animation: ring 3s infinite; }
+
+        @keyframes ring {
+            0%, 100% { box-shadow: 0 8px 22px rgba(230, 51, 41, 0.4); }
+            50% { box-shadow: 0 8px 30px rgba(230, 51, 41, 0.7); }
+        }
+
+        .widget-btn.max { background: linear-gradient(135deg, #2c5cff, #1a3fd0); }
+        .widget-btn.telegram { background: linear-gradient(135deg, #29a9eb, #1c8ac9); }
+        .widget-btn.whatsapp { background: linear-gradient(135deg, #25d366, #1da851); }
+
+        .widget-label {
+            position: absolute; right: 68px; background: var(--bg-card); color: var(--text-main);
+            padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+            white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-btn:hover .widget-label { opacity: 1; }
+
+        /* ===== ПОДВАЛ ===== */
+        footer { background: var(--footer-bg); color: var(--text-muted); padding: 40px 0 30px; font-size: 14px; transition: background 0.35s ease, color 0.35s ease; }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .footer-logo { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--text-main); font-size: 18px; }
+        .footer-logo span { color: var(--primary); }
+        .footer-inner a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .footer-inner a:hover { color: var(--primary); }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 42px; }
+            .contacts-grid { grid-template-columns: 1fr; }
+            .calc-head { grid-template-columns: 1fr; gap: 16px; }
+            .calc-head-text h3 { font-size: 22px; text-align: center; }
+            .calc-head-text p { text-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+            nav, .header-phone { display: none; }
+            .burger { display: flex; }
+            .theme-toggle-wrap { margin-right: 4px; }
+            .hero { padding: 100px 0 60px; }
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .hero-buttons .btn { width: 100%; }
+            .hero-features { gap: 14px; flex-direction: column; }
+            .section-title { font-size: 28px; }
+            .section-subtitle { font-size: 15px; margin-bottom: 35px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .form-wrap { padding: 30px 20px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .calc-wrap { padding: 28px 20px; }
+            .calc-grid { grid-template-columns: 1fr; }
+            .calc-result .calc-total { font-size: 30px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .stat-num { font-size: 34px; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .before-after-grid { grid-template-columns: 1fr; }
+            .floating-widgets { right: 14px; bottom: 14px; gap: 10px; }
+            .widget-btn { width: 50px; height: 50px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .corp-wrap { padding: 28px 20px; }
+            .corp-wrap h3 { font-size: 22px; }
+            .corp-grid { grid-template-columns: 1fr; }
+            .corp-benefits { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 { font-size: 27px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .form-wrap { padding: 24px 16px; }
+            .calc-wrap { padding: 20px 14px; }
+            .calc-result .calc-total { font-size: 26px; }
+            .theme-toggle { width: 40px; height: 40px; font-size: 19px; }
+        }
+
+        /* ===== 🤖 ИИ-ПОМОЩНИК ===== */
+        .ai-fab {
+            position: fixed; left: 18px; bottom: 200px; width: 64px; height: 64px; border-radius: 50%;
+            border: none; background: linear-gradient(135deg, #E63946, #FF6B35); color: #fff;
+            font-size: 30px; cursor: pointer; box-shadow: 0 8px 24px rgba(230,57,70,0.55); z-index: 1001;
+            transition: transform .25s ease, box-shadow .25s ease;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .ai-fab:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(230,57,70,0.75); }
+        .ai-fab.open { transform: rotate(45deg); background: linear-gradient(135deg, #6a11cb, #2575fc); }
+
+        .ai-chat {
+            position: fixed; left: 18px; bottom: 276px; width: 380px; max-width: calc(100vw - 36px);
+            height: 0; opacity: 0; overflow: hidden; display: flex; flex-direction: column;
+            background: var(--bg-card); border-radius: 22px; box-shadow: 0 20px 56px rgba(0,0,0,0.28);
+            z-index: 1000; transition: height .35s cubic-bezier(.4,1.4,.6,1), opacity .3s ease, background 0.35s ease;
+        }
+
+        .ai-chat.open { height: 540px; max-height: calc(100vh - 320px); opacity: 1; }
+
+        .ai-header {
+            display: flex; align-items: center; gap: 12px; padding: 16px 18px;
+            background: linear-gradient(135deg, #E63946, #FF6B35); color: #fff;
+            border-radius: 22px 22px 0 0; flex-shrink: 0;
+        }
+
+        .ai-header .ai-avatar {
+            width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.25);
+            display: flex; align-items: center; justify-content: center; font-size: 22px;
+        }
+
+        .ai-header h2 { font-size: 1.05rem; font-weight: 700; margin: 0; }
+        .ai-header p { font-size: 0.72rem; opacity: 0.9; margin: 0; }
+
+        .ai-body {
+            flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column;
+            gap: 10px; background: var(--ai-body-bg); transition: background 0.35s ease;
+        }
+
+        .ai-body::-webkit-scrollbar { width: 6px; }
+        .ai-body::-webkit-scrollbar-thumb { background: #E63946aa; border-radius: 3px; }
+
+        .ai-msg {
+            max-width: 84%; padding: 10px 14px; border-radius: 16px; font-size: 0.9rem;
+            line-height: 1.45; animation: aiMsgIn .3s ease; word-wrap: break-word;
+        }
+
+        @keyframes aiMsgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+        .ai-msg.bot {
+            align-self: flex-start; background: var(--ai-msg-bot-bg); color: var(--ai-msg-bot-text);
+            border: 1px solid var(--ai-msg-bot-border); border-bottom-left-radius: 4px;
+            transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+        }
+
+        .ai-msg.user {
+            align-self: flex-end; background: linear-gradient(135deg, #E63946, #FF6B35);
+            color: #fff; border-bottom-right-radius: 4px;
+        }
+
+        .ai-msg.typing { font-style: italic; color: #888; }
+
+        .ai-chips {
+            display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 10px;
+            flex-shrink: 0; background: var(--ai-body-bg); transition: background 0.35s ease;
+        }
+
+        .ai-chip {
+            padding: 6px 12px; font-size: 0.75rem; border-radius: 20px;
+            border: 1px solid #E63946; background: var(--ai-msg-bot-bg); color: #E63946;
+            cursor: pointer; transition: all .2s;
+        }
+
+        .ai-chip:hover { background: #E63946; color: #fff; }
+
+        .ai-input {
+            display: flex; gap: 8px; padding: 12px 16px 16px; flex-shrink: 0;
+            border-top: 1px solid var(--border-color); background: var(--bg-card); border-radius: 0 0 22px 22px;
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+
+        .ai-input input {
+            flex: 1; padding: 12px 16px; border-radius: 24px; border: 1px solid var(--input-border);
+            font-size: 0.9rem; outline: none; transition: border-color .2s; font-family: inherit;
+            background: var(--input-bg); color: var(--input-text);
+        }
+
+        .ai-input input::placeholder { color: var(--text-muted); opacity: 0.7; }
+
+        .ai-input input:focus { border-color: #E63946; }
+
+        .ai-input button {
+            width: 46px; height: 46px; border-radius: 50%; border: none;
+            background: linear-gradient(135deg, #E63946, #FF6B35); color: #fff; font-size: 20px;
+            cursor: pointer; transition: transform .2s; flex-shrink: 0;
+        }
+
+        .ai-input button:hover { transform: scale(1.08); }
+
+        @media (max-width: 480px) {
+            .ai-chat { left: 10px; bottom: 270px; width: calc(100vw - 20px); }
+            .ai-fab { left: 12px; bottom: 190px; }
+        }
+
+        /* Плавные переходы для всех элементов при смене темы */
+        .service-card, .stat, .review-card, .contact-item, .form-wrap,
+        .theme-toggle, .widget-label, header, footer, .mobile-menu,
+        .ai-chat, .ai-body, .ai-input, .ai-chips, .form-group input,
+        .form-group select, .form-group textarea, .file-upload,
+        .calc-wrap, .calc-group select, .calc-group input, .calc-result,
+        .zone-row, .zones-map, .zone-tooltip,
+        .calc-head, .calc-head-badge, .corp-wrap, .corp-benefit,
+        .corp-group input, .corp-group select, .corp-group textarea {
+            transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== ШАПКА ===== -->
+<header id="header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="theme-toggle-wrap">
+                <button class="theme-toggle" id="themeToggle" aria-label="Сменить тему" title="Сменить тему">🌙</button>
+            </div>
+
+            <a href="#hero" class="logo">
+                <div class="logo-mark">ГС</div>
+                <div class="logo-text">
+                    <strong>ГрузСпецСервис</strong>
+                    <span>Ремонт грузовой техники · Саратов</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#advantages">Преимущества</a></li>
+                    <li><a href="#zones">Зона выезда</a></li>
+                    <li><a href="#trust">О нас</a></li>
+                    <li><a href="#calculator">Калькулятор</a></li>
+                    <li><a href="#corporate">Корпоративным</a></li>
+                    <li><a href="#form">Заявка</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-phone">
+                <a href="tel:+78452000000">+7 (8452) 00-00-00</a>
+                <small>Круглосуточно, без выходных</small>
+            </div>
+
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Мобильное меню -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Услуги</a>
+    <a href="#advantages">Преимущества</a>
+    <a href="#zones">Зона выезда</a>
+    <a href="#trust">О нас</a>
+    <a href="#calculator">Калькулятор</a>
+    <a href="#corporate">Корпоративным</a>
+    <a href="#form">Заявка</a>
+    <a href="#contacts">Контакты</a>
+    <a href="tel:+78452000000" style="color:#e63329;">+7 (8452) 00-00-00</a>
+</div>
+
+<!-- ===== ГЛАВНЫЙ ЭКРАН ===== -->
+<section class="hero" id="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">Работаем 24/7 · Выезд по Саратову и области</div>
+            <h1>Ремонт грузовых автомобилей <span>с гарантией до 2 лет</span></h1>
+            <p>Профессиональная диагностика, ремонт и обслуживание грузовой техники любой сложности. Собственный СТО в Саратове, выездная бригада и эвакуатор — приедем за 30 минут.</p>
+            <div class="hero-buttons">
+                <a href="#form" class="btn btn-primary">Оставить заявку на ремонт</a>
+                <a href="tel:+78452000000" class="btn btn-outline">Позвонить сейчас</a>
+            </div>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Выезд за 30 минут
+                </div>
+                <div class="hero-feature">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Оригинальные запчасти
+                </div>
+                <div class="hero-feature">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Гарантия на работы
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== УСЛУГИ ===== -->
+<section class="services" id="services">
+    <div class="container">
+        <h2 class="section-title">Наши услуги</h2>
+        <p class="section-subtitle">Полный спектр работ по ремонту и обслуживанию грузовых автомобилей, прицепов и спецтехники в Саратове и области</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3>Ремонт на СТО</h3>
+                <p>Капитальный и текущий ремонт двигателя, КПП, ходовой части, тормозной системы. Собственный сервисный центр в Саратове с современным оборудованием.</p>
+                <div class="service-price">от 2 500 ₽ / нормо-час</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
+                <h3>Выездной ремонт и диагностика</h3>
+                <p>Компьютерная диагностика и ремонт на месте поломки. Бригада выезжает по Саратову и области — не нужно тратить время на эвакуацию.</p>
+                <div class="service-price">от 3 000 ₽ / выезд</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <h3>Автоэлектрик</h3>
+                <p>Ремонт электропроводки, генераторов, стартеров, блоков управления. Поиск и устранение неисправностей любой сложности.</p>
+                <div class="service-price">от 1 800 ₽</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+                </div>
+                <h3>Эвакуатор</h3>
+                <p>Перевозка грузовых автомобилей и спецтехники по Саратову и области. Работаем круглосуточно, подача от 20 минут. Собственный парк эвакуаторов.</p>
+                <div class="service-price">от 4 500 ₽ / вызов</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </div>
+                <h3>Запчасти</h3>
+                <p>Оригинальные и аналоговые запчасти для грузовых автомобилей в наличии и под заказ. Доставка по Саратову и в районы области.</p>
+                <div class="service-price">от 500 ₽</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+                <h3>Корпоративное обслуживание</h3>
+                <p>Комплексное обслуживание автопарков Саратова и области по договору. Персональный менеджер, отсрочка платежа, приоритетное обслуживание.</p>
+                <div class="service-price">Индивидуальный расчет</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ПРЕИМУЩЕСТВА ===== -->
+<section class="advantages" id="advantages">
+    <div class="container">
+        <h2 class="section-title">Почему выбирают нас</h2>
+        <p class="section-subtitle">Мы делаем ремонт грузовых автомобилей в Саратове быстрым, прозрачным и предсказуемым</p>
+
+        <div class="advantages-grid">
+            <div class="advantage">
+                <div class="advantage-icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3>Работаем 24/7</h3>
+                <p>Круглосуточный приём заявок и выезд бригады по Саратову и области. Поможем в любое время дня и ночи.</p>
+            </div>
+            <div class="advantage">
+                <div class="advantage-icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                </div>
+                <h3>Гарантия до 2 лет</h3>
+                <p>Официальная гарантия на все виды работ и установленные запчасти. Договор и закрывающие документы.</p>
+            </div>
+            <div class="advantage">
+                <div class="advantage-icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <h3>Честные цены</h3>
+                <p>Фиксированная смета до начала работ. Никаких скрытых доплат и навязанных услуг.</p>
+            </div>
+            <div class="advantage">
+                <div class="advantage-icon">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>Опытные мастера</h3>
+                <p>Сертифицированные специалисты с опытом работы на грузовой технике более 10 лет.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ВИДЖЕТ: ВЫЕЗД ЗА 30 МИНУТ + ЗОНА ОБСЛУЖИВАНИЯ ===== -->
+<section class="zones-section" id="zones">
+    <div class="container">
+        <h2 class="section-title">Выезд за 30 минут</h2>
+        <p class="section-subtitle">Зона обслуживания по Саратову и Саратовской области: отметьте свой район на схеме — покажем ориентировочное время прибытия бригады</p>
+
+        <div class="zones-wrap">
+            <div class="zones-info">
+                <h3>Мы уже <span>рядом с вами</span></h3>
+                <p>Бригада выездной диагностики дежурит по Саратову и Саратовской области круглосуточно. Нажмите на зону на карте, чтобы узнать время прибытия.</p>
+
+                <div class="zones-list">
+                    <div class="zone-row" data-zone="30">
+                        <span class="zone-dot z30"></span>
+                        <div class="zone-text">
+                            <strong>Зона 30 минут</strong>
+                            <small>Саратов, Энгельс и пригород (в пределах 20 км)</small>
+                        </div>
+                        <span class="zone-time-badge">~30 мин</span>
+                    </div>
+                    <div class="zone-row" data-zone="60">
+                        <span class="zone-dot z60"></span>
+                        <div class="zone-text">
+                            <strong>Зона 60 минут</strong>
+                            <small>Балаково, Маркс, Аткарск, Красноармейск</small>
+                        </div>
+                        <span class="zone-time-badge">~60 мин</span>
+                    </div>
+                    <div class="zone-row" data-zone="90">
+                        <span class="zone-dot z90"></span>
+                        <div class="zone-text">
+                            <strong>Зона 90 минут</strong>
+                            <small>Вольск, Пугачёв, Балашов, Ртищево и трассы</small>
+                        </div>
+                        <span class="zone-time-badge">~90 мин</span>
+                    </div>
+                </div>
+
+                <div class="zones-cta">
+                    <a href="#form" class="btn btn-primary">Вызвать бригаду</a>
+                    <a href="tel:+78452000000" class="btn btn-outline" style="color:var(--text-main);border-color:var(--text-main);">Позвонить</a>
+                </div>
+            </div>
+
+            <div class="zones-map" id="zonesMap">
+                <div class="zone-ring r90" data-zone="90" data-label="90 МИН"></div>
+                <div class="zone-ring r60" data-zone="60" data-label="60 МИН"></div>
+                <div class="zone-ring r30" data-zone="30" data-label="30 МИН"></div>
+
+                <div class="map-center" title="СТО ГрузСпецСервис — Саратов">🚚</div>
+
+                <span class="map-pin" data-name="Энгельс" style="top:55%;left:58%;"></span>
+                <span class="map-pin" data-name="Маркс" style="top:34%;left:72%;"></span>
+                <span class="map-pin" data-name="Балаково" style="top:18%;left:68%;"></span>
+                <span class="map-pin" data-name="Пугачёв" style="top:22%;left:88%;"></span>
+                <span class="map-pin" data-name="Вольск" style="top:36%;left:86%;"></span>
+                <span class="map-pin" data-name="Аткарск" style="top:30%;left:26%;"></span>
+                <span class="map-pin" data-name="Балашов" style="top:52%;left:12%;"></span>
+                <span class="map-pin" data-name="Ртищево" style="top:34%;left:8%;"></span>
+
+                <div class="zone-tooltip" id="zoneTooltip">
+                    <strong>Выберите зону</strong>
+                    <span>Нажмите на кольцо или район</span>
+                    <div class="tt-time" style="display:none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== БЛОК ДОВЕРИЯ ===== -->
+<section class="trust" id="trust">
+    <div class="container">
+        <h2 class="section-title">Нам доверяют</h2>
+        <p class="section-subtitle">Цифры, отзывы и реальные результаты нашей работы в Саратове и области</p>
+
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-num" data-count="15">0</div><p>лет на рынке</p></div>
+            <div class="stat"><div class="stat-num" data-count="8500">0</div><p>отремонтированных автомобилей</p></div>
+            <div class="stat"><div class="stat-num" data-count="98">0</div><p>процентов довольных клиентов</p></div>
+            <div class="stat"><div class="stat-num" data-count="24">0</div><p>часа на связи и выезде</p></div>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">А</div>
+                    <div><div class="review-name">Алексей Морозов</div><div class="review-stars">★★★★★</div></div>
+                </div>
+                <p class="review-text">«Сломался на трассе под Саратовом, позвонил в ГрузСпецСервис — приехали через 25 минут! Диагностировали на месте, отремонтировали. Очень выручили. Рекомендую!»</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">Е</div>
+                    <div><div class="review-name">Елена Ковалёва</div><div class="review-stars">★★★★★</div></div>
+                </div>
+                <p class="review-text">«Обслуживаем у них весь парк — 12 машин. Всегда быстро, качественно и по адекватным ценам. Отдельное спасибо за персонального менеджера!»</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">Д</div>
+                    <div><div class="review-name">Дмитрий Соколов</div><div class="review-stars">★★★★★</div></div>
+                </div>
+                <p class="review-text">«Делали капитальный ремонт двигателя на Volvo FH. Всё чётко: смета, сроки, гарантия. Машина работает как новая. Спасибо мастерам!»</p>
+            </div>
+        </div>
+
+        <div class="before-after-grid">
+            <div class="ba-card">
+                <div class="ba-images">
+                    <div class="ba-img"><span class="ba-label before">До</span><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=400&q=70" alt="До ремонта" loading="lazy"></div>
+                    <div class="ba-img"><span class="ba-label after">После</span><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=400&q=70" alt="После ремонта" loading="lazy"></div>
+                </div>
+                <div class="ba-caption">Капитальный ремонт двигателя Volvo FH</div>
+            </div>
+            <div class="ba-card">
+                <div class="ba-images">
+                    <div class="ba-img"><span class="ba-label before">До</span><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=400&q=70" alt="До ремонта" loading="lazy"></div>
+                    <div class="ba-img"><span class="ba-label after">После</span><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=400&q=70" alt="После ремонта" loading="lazy"></div>
+                </div>
+                <div class="ba-caption">Восстановление ходовой части MAN TGX</div>
+            </div>
+            <div class="ba-card">
+                <div class="ba-images">
+                    <div class="ba-img"><span class="ba-label before">До</span><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=400&q=70" alt="До ремонта" loading="lazy"></div>
+                    <div class="ba-img"><span class="ba-label after">После</span><img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=400&q=70" alt="После ремонта" loading="lazy"></div>
+                </div>
+                <div class="ba-caption">Ремонт КПП Scania R500</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== КАЛЬКУЛЯТОР РЕМОНТА ===== -->
+<section class="calc-section" id="calculator">
+    <div class="container">
+        <h2 class="section-title">Калькулятор стоимости ремонта</h2>
+        <p class="section-subtitle">Рассчитайте предварительную стоимость работ. Сумма может достигать 100 000 000 ₽</p>
+
+        <div class="calc-wrap">
+            <div class="calc-head">
+                <div class="calc-head-text">
+                    <h3>Онлайн-расчёт стоимости</h3>
+                    <p>Выберите параметры — калькулятор покажет ориентировочную стоимость ремонта с учётом типа техники, работ, запчастей и допуслуг.</p>
+                </div>
+                <div class="calc-head-badges">
+                    <div class="calc-head-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <div>Расчёт за 30 секунд <span>· без звонка и ожидания</span></div>
+                    </div>
+                    <div class="calc-head-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                        <div>Гарантия до 2 лет <span>· фиксированная смета</span></div>
+                    </div>
+                    <div class="calc-head-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <div>Точная цена после осмотра <span>· выезд по Саратову и области</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-grid">
+                <div class="calc-group">
+                    <label for="calcVehicleType">Тип техники</label>
+                    <select id="calcVehicleType">
+                        <option value="1">Грузовой автомобиль (лёгкий)</option>
+                        <option value="1.5">Грузовой автомобиль (средний)</option>
+                        <option value="2">Грузовой автомобиль (тяжёлый)</option>
+                        <option value="2.5">Спецтехника</option>
+                        <option value="3">Автопарк / корпоративный</option>
+                    </select>
+                </div>
+
+                <div class="calc-group">
+                    <label for="calcWorkType">Тип работ</label>
+                    <select id="calcWorkType">
+                        <option value="2500">Диагностика и ТО</option>
+                        <option value="25000">Текущий ремонт</option>
+                        <option value="80000">Капитальный ремонт двигателя</option>
+                        <option value="50000">Ремонт КПП / трансмиссии</option>
+                        <option value="30000">Ремонт ходовой части</option>
+                        <option value="15000">Ремонт электрики</option>
+                        <option value="120000">Комплексный восстановительный ремонт</option>
+                        <option value="500000">Полная реконструкция / капитальный ремонт парка</option>
+                    </select>
+                </div>
+
+                <div class="calc-group">
+                    <label for="calcHours">Количество нормо-часов</label>
+                    <input type="number" id="calcHours" value="8" min="1" max="1000" step="1">
+                </div>
+
+                <div class="calc-group">
+                    <label for="calcParts">Стоимость запчастей (₽)</label>
+                    <input type="number" id="calcParts" value="0" min="0" max="100000000" step="1000">
+                </div>
+
+                <div class="calc-group full">
+                    <label>Дополнительные услуги</label>
+                    <div class="calc-checks">
+                        <label class="calc-check">
+                            <input type="checkbox" id="calcEvac" data-price="4500"> Эвакуатор (+4 500 ₽)
+                        </label>
+                        <label class="calc-check">
+                            <input type="checkbox" id="calcTrip" data-price="3000"> Выездная диагностика (+3 000 ₽)
+                        </label>
+                        <label class="calc-check">
+                            <input type="checkbox" id="calcUrgent" data-price="5000"> Срочность 24/7 (+5 000 ₽)
+                        </label>
+                        <label class="calc-check">
+                            <input type="checkbox" id="calcGuarantee" data-price="10000"> Расширенная гарантия (+10 000 ₽)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-result">
+                <div class="calc-total-label">Предварительная стоимость</div>
+                <div class="calc-total" id="calcTotal">0 ₽</div>
+                <div class="calc-detail" id="calcDetail">Выберите параметры для расчёта</div>
+            </div>
+
+            <div class="calc-apply">
+                <button type="button" class="btn btn-primary" id="calcApplyBtn">Подставить в заявку</button>
+            </div>
+            <p class="calc-note">* Расчёт является предварительным. Точная стоимость определяется после осмотра.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ЗАЯВКА НА КОРПОРАТИВНОЕ ОБСЛУЖИВАНИЕ ===== -->
+<section class="corp-section" id="corporate">
+    <div class="container">
+        <h2 class="section-title">Корпоративное обслуживание</h2>
+        <p class="section-subtitle">Комплексное обслуживание автопарков Саратова и области по договору — персональный менеджер, отсрочка платежа и приоритетный сервис</p>
+
+        <div class="corp-wrap">
+            <span class="corp-badge">🏢 Для юрлиц и автопарков</span>
+            <h3>Заявка на корпоративное обслуживание</h3>
+            <p class="corp-desc">Оставьте заявку — персональный менеджер свяжется с вами в течение 15 минут, рассчитает стоимость обслуживания парка и подготовит договор.</p>
+
+            <div class="corp-benefits">
+                <div class="corp-benefit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div><strong>Персональный менеджер</strong><small>Закреплённый специалист 24/7</small></div>
+                </div>
+                <div class="corp-benefit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div><strong>Отсрочка платежа</strong><small>До 30 дней по договору</small></div>
+                </div>
+                <div class="corp-benefit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div><strong>Приоритетный сервис</strong><small>Вне очереди и срочный выезд</small></div>
+                </div>
+                <div class="corp-benefit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <div><strong>Закрывающие документы</strong><small>Полный пакет для бухгалтерии</small></div>
+                </div>
+            </div>
+
+            <form id="corpForm" novalidate>
+                <div class="corp-grid">
+                    <div class="corp-group">
+                        <label for="corpCompany">Компания <span>*</span></label>
+                        <input type="text" id="corpCompany" name="company" placeholder="ООО «ТрансЛогистик»" required>
+                    </div>
+                    <div class="corp-group">
+                        <label for="corpInn">ИНН <span>*</span></label>
+                        <input type="text" id="corpInn" name="inn" placeholder="10 или 12 цифр" inputmode="numeric" maxlength="12" required>
+                    </div>
+                    <div class="corp-group">
+                        <label for="corpContact">Контактное лицо <span>*</span></label>
+                        <input type="text" id="corpContact" name="contact" placeholder="ФИО и должность" required>
+                    </div>
+                    <div class="corp-group">
+                        <label for="corpPhone">Телефон <span>*</span></label>
+                        <input type="tel" id="corpPhone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    <div class="corp-group">
+                        <label for="corpEmail">Email</label>
+                        <input type="email" id="corpEmail" name="email" placeholder="info@company.ru">
+                    </div>
+                    <div class="corp-group">
+                        <label for="corpFleet">Размер парка <span>*</span></label>
+                        <select id="corpFleet" name="fleet" required>
+                            <option value="">Выберите количество</option>
+                            <option value="1-5">1–5 машин</option>
+                            <option value="6-15">6–15 машин</option>
+                            <option value="16-50">16–50 машин</option>
+                            <option value="51-100">51–100 машин</option>
+                            <option value="100+">Более 100 машин</option>
+                        </select>
+                    </div>
+                    <div class="corp-group">
+                        <label for="corpVehicleType">Тип техники</label>
+                        <select id="corpVehicleType" name="vehicleType">
+                            <option value="">Выберите тип</option>
+                            <option value="truck-light">Грузовые (лёгкие)</option>
+                            <option value="truck-heavy">Грузовые (тяжёлые)</option>
+                            <option value="special">Спецтехника</option>
+                            <option value="mixed">Смешанный парк</option>
+                        </select>
+                    </div>
+                    <div class="corp-group full">
+                        <label for="corpComment">Комментарий</label>
+                        <textarea id="corpComment" name="comment" placeholder="Опишите задачи: регулярное ТО, ремонт, выездная диагностика, эвакуация..."></textarea>
+                    </div>
+                </div>
+
+                <div class="corp-submit">
+                    <button type="submit" class="btn btn-primary">Отправить заявку на обслуживание</button>
+                </div>
+                <p class="corp-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+            </form>
+
+            <div class="corp-confirmation" id="corpConfirmation">
+                <div class="confirmation-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3>Заявка принята!</h3>
+                <p>Спасибо! Персональный менеджер свяжется с вами в течение 15 минут.</p>
+                <div class="time-badge">⏱ Перезвоним в течение 15 минут</div>
+                <p style="font-size:14px; color:#888;">Срочный вопрос — звоните прямо сейчас:</p>
+                <a href="tel:+78452000000" class="btn btn-primary" style="margin-top:8px;">+7 (8452) 00-00-00</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ФОРМА ЗАЯВКИ ===== -->
+<section class="form-section" id="form">
+    <div class="container">
+        <h2 class="section-title">Оставить заявку на ремонт</h2>
+        <p class="section-subtitle">Заполните форму — перезвоним в течение 5 минут, уточним детали и предложим решение</p>
+
+        <div class="form-wrap">
+            <form id="repairForm" novalidate>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Имя <span>*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Как к вам обращаться" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон <span>*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle">Марка ТС <span>*</span></label>
+                        <input type="text" id="vehicle" name="vehicle" placeholder="Например: Volvo FH, MAN TGX" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="problemType">Тип проблемы</label>
+                        <select id="problemType" name="problemType">
+                            <option value="">Выберите тип</option>
+                            <option value="engine">Двигатель</option>
+                            <option value="transmission">КПП / трансмиссия</option>
+                            <option value="suspension">Ходовая часть</option>
+                            <option value="electrics">Электрика</option>
+                            <option value="brakes">Тормозная система</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label for="description">Описание проблемы <span>*</span></label>
+                        <textarea id="description" name="description" placeholder="Опишите, что случилось с автомобилем: симптомы, когда началось, где находитесь..." required></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label>Фото проблемы (необязательно)</label>
+                        <div class="file-upload">
+                            <input type="file" id="photo" name="photo" accept="image/*" multiple>
+                            <div class="file-upload-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            </div>
+                            <div class="file-upload-text">Перетащите фото сюда или <strong>выберите файлы</strong></div>
+                            <span class="file-name" id="fileName"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                </div>
+                <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+            </form>
+
+            <div class="confirmation" id="confirmation">
+                <div class="confirmation-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3>Заявка принята!</h3>
+                <p>Спасибо! Мы получили вашу заявку на ремонт.</p>
+                <div class="time-badge">⏱ Перезвоним через 5 минут</div>
+                <p style="font-size:14px; color:#888;">Если нужна срочная помощь — звоните прямо сейчас:</p>
+                <a href="tel:+78452000000" class="btn btn-primary" style="margin-top:8px;">+7 (8452) 00-00-00</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== КОНТАКТЫ ===== -->
+<section class="contacts" id="contacts">
+    <div class="container">
+        <h2 class="section-title">Контакты</h2>
+        <p class="section-subtitle">Приезжайте в наш сервисный центр в Саратове или свяжитесь любым удобным способом</p>
+
+        <div class="contacts-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div><h4>Телефон</h4><a href="tel:+78452000000">+7 (8452) 00-00-00</a><small>Круглосуточно, без выходных</small></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div><h4>Адрес</h4><p>г. Саратов, ул. Автозаводская, д. 18, стр. 2</p><small>Удобный подъезд для грузового транспорта, стоянка для фур</small></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div><h4>Режим работы</h4><p>Пн–Вс: 24 часа</p><small>Приём заявок и выезд бригады — круглосуточно</small></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div><h4>Email</h4><a href="mailto:info@gruzspecservice.ru">info@gruzspecservice.ru</a><small>Для корпоративных запросов и документов</small></div>
+                </div>
+            </div>
+
+            <div class="map-wrap">
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=46.034%2C51.533&z=13&pt=46.034,51.533,pm2rdm" allowfullscreen loading="lazy" title="Карта — ГрузСпецСервис, Саратов"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ПОДВАЛ ===== -->
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">Груз<span>Спец</span>Сервис</div>
+            <div>© 2025 ГрузСпецСервис, Саратов. Все права защищены.</div>
+            <div>
+                <a href="tel:+78452000000">+7 (8452) 00-00-00</a> ·
+                <a href="mailto:info@gruzspecservice.ru">info@gruzspecservice.ru</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== ПЛАВАЮЩИЕ ВИДЖЕТЫ ===== -->
+<div class="floating-widgets">
+    <a href="https://max.ru/" target="_blank" rel="noopener" class="widget-btn max" aria-label="Написать в MAX">
+        <span class="widget-label">Написать в MAX</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    </a>
+    <a href="https://t.me/gruzspecservice" target="_blank" rel="noopener" class="widget-btn telegram" aria-label="Написать в Telegram">
+        <span class="widget-label">Написать в Telegram</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.47l-.38 5.34c.54 0 .78-.23 1.06-.51l2.54-2.44 5.26 3.86c.96.53 1.64.25 1.88-.89L21.83 5.7c.31-1.42-.51-1.97-1.45-1.62L3.1 11.35c-1.38.54-1.36 1.31-.24 1.66l4.41 1.38L17.55 6.5c.48-.32.92-.14.56.18L9.04 15.47z"/></svg>
+    </a>
+    <a href="https://wa.me/78452000000" target="_blank" rel="noopener" class="widget-btn whatsapp" aria-label="Написать в WhatsApp">
+        <span class="widget-label">Написать в WhatsApp</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.21 3.07c.15.2 2.09 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.76.46 3.41 1.27 4.85L2 22l5.29-1.39A9.96 9.96 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.47-4.36-1.28l-.31-.19-3.14.82.84-3.06-.2-.32A7.96 7.96 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+    </a>
+    <a href="tel:+78452000000" class="widget-btn phone" aria-label="Позвонить">
+        <span class="widget-label">Позвонить</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+</div>
+
+<!-- ===== 🤖 ИИ-ПОМОЩНИК ===== -->
+<button class="ai-fab" id="aiFab" aria-label="Открыть ИИ-помощника">🤖</button>
+
+<div class="ai-chat" id="aiChat">
+    <div class="ai-header">
+        <div class="ai-avatar">🤖</div>
+        <div><h2>ИИ-помощник</h2><p>ГрузСпецСервис — Саратов, на связи</p></div>
+    </div>
+    <div class="ai-body" id="aiBody"></div>
+    <div class="ai-chips" id="aiChips">
+        <span class="ai-chip" data-q="Сколько стоит ремонт?">Сколько стоит ремонт?</span>
+        <span class="ai-chip" data-q="Выезд есть?">Выезд есть?</span>
+        <span class="ai-chip" data-q="Эвакуатор круглосуточно?">Эвакуатор?</span>
+        <span class="ai-chip" data-q="Как оставить заявку?">Как оставить заявку?</span>
+        <span class="ai-chip" data-q="Корпоративное обслуживание">Корпоративным</span>
+    </div>
+    <div class="ai-input">
+        <input type="text" id="aiInput" placeholder="Спросите что-нибудь..." autocomplete="off">
+        <button id="aiSend" aria-label="Отправить">➤</button>
+    </div>
+</div>
+
+<script>
+    // ===== ТЕМА: ПЕРЕКЛЮЧЕНИЕ =====
+    (function() {
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        function setTheme(theme) {
+            if (theme === 'light') {
+                body.classList.add('light-theme');
+                themeToggle.textContent = '☀️';
+                themeToggle.setAttribute('aria-label', 'Переключить на тёмную тему');
+            } else {
+                body.classList.remove('light-theme');
+                themeToggle.textContent = '🌙';
+                themeToggle.setAttribute('aria-label', 'Переключить на светлую тему');
+            }
+        }
+
+        setTheme('dark');
+
+        themeToggle.addEventListener('click', function() {
+            if (body.classList.contains('light-theme')) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        });
+    })();
+
+    // ===== БУРГЕР-МЕНЮ =====
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+    });
+
+    // ===== ШАПКА ПРИ СКРОЛЛЕ =====
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.style.background = 'var(--header-bg-scrolled)';
+            header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
+        } else {
+            header.style.background = 'var(--header-bg)';
+            header.style.boxShadow = 'none';
+        }
+    });
+
+    // ===== ФОРМА РЕМОНТА =====
+    const form = document.getElementById('repairForm');
+    const confirmation = document.getElementById('confirmation');
+    const fileInput = document.getElementById('photo');
+    const fileName = document.getElementById('fileName');
+
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            const names = Array.from(fileInput.files).map(f => f.name).join(', ');
+            fileName.textContent = '📎 ' + names;
+        } else {
+            fileName.textContent = '';
+        }
+    });
+
+    const phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val.length > 0 && val[0] === '8') val = '7' + val.slice(1);
+        if (val[0] !== '7') val = '7' + val;
+        let res = '+7';
+        if (val.length > 1) res += ' (' + val.slice(1, 4);
+        if (val.length >= 5) res += ') ' + val.slice(4, 7);
+        if (val.length >= 8) res += '-' + val.slice(7, 9);
+        if (val.length >= 10) res += '-' + val.slice(9, 11);
+        e.target.value = res;
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const vehicle = document.getElementById('vehicle').value.trim();
+        const description = document.getElementById('description').value.trim();
+
+        if (!name || !phone || !vehicle || !description) {
+            alert('Пожалуйста, заполните обязательные поля: имя, телефон, марка ТС и описание проблемы.');
+            return;
+        }
+
+        if (phone.replace(/\D/g, '').length < 11) {
+            alert('Пожалуйста, введите корректный номер телефона.');
+            return;
+        }
+
+        form.style.display = 'none';
+        confirmation.classList.add('active');
+        document.getElementById('form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // ===== АНИМАЦИЯ СЧЁТЧИКОВ =====
+    const counters = document.querySelectorAll('.stat-num');
+    let countersAnimated = false;
+
+    function animateCounters() {
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-count');
+            const duration = 2000;
+            const start = performance.now();
+
+            function update(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(eased * target);
+                counter.textContent = current.toLocaleString('ru-RU');
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        });
+    }
+
+    const trustSection = document.getElementById('trust');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !countersAnimated) {
+                countersAnimated = true;
+                animateCounters();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    if (trustSection) observer.observe(trustSection);
+
+    // ===== 🤖 ИИ-ПОМОЩНИК =====
+    (function () {
+        'use strict';
+
+        const fab = document.getElementById('aiFab');
+        const chat = document.getElementById('aiChat');
+        const body = document.getElementById('aiBody');
+        const input = document.getElementById('aiInput');
+        const sendBtn = document.getElementById('aiSend');
+        const chips = document.getElementById('aiChips');
+
+        if (!fab || !chat || !body || !input || !sendBtn) return;
+
+        const knowledge = [
+            { keys: ['цен', 'стоит', 'сколько', 'стоимость', 'прайс'], answer: 'Стоимость зависит от работ: диагностика — от 1 500 ₽, выездной ремонт — от 3 000 ₽ + запчасти. Точную цену назовём после осмотра. Оставьте заявку — перезвоним за 10 минут! 🔧' },
+            { keys: ['выезд', 'приед', 'на месте', 'выездной'], answer: 'Да, выездной ремонт работает по Саратову и Саратовской области! Бригада приедет на объект в течение 1–2 часов. Компьютерная диагностика и устранение неисправностей — прямо на месте. 🚚' },
+            { keys: ['эвакуатор', 'эваку', 'круглосуточ'], answer: 'Эвакуатор работает круглосуточно — 24/7, по Саратову и области. Для грузовых автомобилей и спецтехники. Звоните: +7 (8452) 00-00-00 🛻' },
+            { keys: ['заявк', 'оставить', 'записа', 'запись'], answer: 'Оставить заявку просто: прокрутите страницу к разделу «Заявка на ремонт», заполните имя, телефон, марку ТС и опишите проблему. Или нажмите кнопку «Оставить заявку» вверху. 📝' },
+            { keys: ['гарант', 'гарантий'], answer: 'Гарантия на работы — до 2 лет. На запчасти действует гарантия производителя. Все работы фиксируются в закрывающих документах. ✅' },
+            { keys: ['адрес', 'где', 'находит', 'приехать'], answer: 'Мы находимся: г. Саратов, ул. Автозаводская, д. 18, стр. 2. Режим работы: круглосуточно. Эвакуатор — 24/7. 📍' },
+            { keys: ['телефон', 'позвон', 'номер', 'связ'], answer: 'Телефон: +7 (8452) 00-00-00. Можно позвонить или написать в Telegram / MAX / WhatsApp. Отвечаем быстро! 📞' },
+            { keys: ['время', 'работа', 'режим', 'график', 'часы'], answer: 'Режим работы: Пн–Вс, круглосуточно. Эвакуатор и выездная бригада — 24/7 по Саратову и области. 🕐' },
+            { keys: ['двигател', 'капитальн'], answer: 'Капитальный и плановый ремонт двигателя — на собственной СТО в Саратове. Диагностика, разборка, замена деталей, сборка и обкатка. Гарантия до 2 лет. 🔧' },
+            { keys: ['ходов', 'подвеск', 'тормоз', 'кпп'], answer: 'Ремонт ходовой, тормозной системы и КПП — на СТО и с выездом. Используем оригинальные и аналоговые запчасти. ⚙️' },
+            { keys: ['электрик', 'электро', 'проводк', 'стартер', 'генератор'], answer: 'Автоэлектрик найдёт и устранит неисправности электрооборудования: проводка, стартеры, генераторы. Выезд на объект по Саратову и области. ⚡' },
+            { keys: ['запчаст', 'детал', 'vin'], answer: 'Подбираем оригинальные и аналоговые запчасти по VIN. Доставка на объект по Саратову и в районы области. ⚙️' },
+            { keys: ['корпоратив', 'юрлиц', 'договор', 'парк', 'инн'], answer: 'Для юрлиц Саратова и области — договоры на регулярное ТО парка, закреплённый мастер, отложенная оплата и закрывающие документы. Оставьте заявку в разделе «Корпоративным» — менеджер свяжется за 15 минут. 🏢' },
+            { keys: ['привет', 'здравств', 'хай', 'добр'], answer: 'Здравствуйте! 👋 Я ИИ-помощник ГрузСпецСервис в Саратове. Спросите про цены, выезд, эвакуатор или оставьте заявку — помогу разобраться.' },
+            { keys: ['спасиб', 'благодар'], answer: 'Пожалуйста! 🚚 Если нужна помощь — звоните +7 (8452) 00-00-00.' },
+            { keys: ['кто ты', 'что умеешь', 'помощник'], answer: 'Я ИИ-помощник ГрузСпецСервис в Саратове. Могу подсказать по ремонту грузовиков, ценам, выезду по Саратову и области, эвакуатору, запчастям и помочь оставить заявку.' },
+            { keys: ['саратов', 'энгельс', 'балаково', 'вольск', 'пугачёв', 'пугачев', 'маркс', 'балашов', 'ртищево', 'аткарск'], answer: 'Работаем по всей Саратовской области: Саратов, Энгельс, Балаково, Вольск, Пугачёв, Маркс, Балашов, Ртищево, Аткарск и другие районы. Время выезда — от 30 до 90 минут в зависимости от зоны. 🗺️' }
+        ];
+
+        let greeted = false;
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = 'ai-msg ' + sender;
+            div.textContent = text;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+            return div;
+        }
+
+        function showTyping() {
+            const div = document.createElement('div');
+            div.className = 'ai-msg bot typing';
+            div.textContent = 'Печатает...';
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+            return div;
+        }
+
+        function getAnswer(question) {
+            const q = question.toLowerCase().trim();
+            for (const item of knowledge) {
+                if (item.keys.some(function (key) { return q.includes(key); })) return item.answer;
+            }
+            return 'Пока не понял вопрос. Могу подсказать про цены, выезд по Саратову и области, эвакуатор, запчасти, гарантию и заявку. Или позвоните: +7 (8452) 00-00-00.';
+        }
+
+        function answerQuestion(question) {
+            const typing = showTyping();
+            setTimeout(function () {
+                typing.remove();
+                addMessage(getAnswer(question), 'bot');
+            }, 550);
+        }
+
+        function sendMessage(text) {
+            const value = String(text || '').trim();
+            if (!value) return;
+            if (!chat.classList.contains('open')) toggleChat(true);
+            addMessage(value, 'user');
+            input.value = '';
+            answerQuestion(value);
+        }
+
+        function toggleChat(forceOpen) {
+            const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !chat.classList.contains('open');
+            chat.classList.toggle('open', shouldOpen);
+            fab.classList.toggle('open', shouldOpen);
+
+            if (shouldOpen) {
+                if (!greeted) {
+                    greeted = true;
+                    addMessage('Здравствуйте! 👋 Я ИИ-помощник ГрузСпецСервис в Саратове. Спросите про цены, выезд, эвакуатор или оставьте заявку — помогу разобраться.', 'bot');
+                }
+                setTimeout(function () { input.focus(); }, 350);
+            }
+        }
+
+        fab.addEventListener('click', function () { toggleChat(); });
+        sendBtn.addEventListener('click', function () { sendMessage(input.value); });
+        input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') { event.preventDefault(); sendMessage(input.value); }
+        });
+
+        if (chips) {
+            chips.addEventListener('click', function (event) {
+                const chip = event.target.closest('.ai-chip');
+                if (!chip) return;
+                sendMessage(chip.getAttribute('data-q') || chip.textContent);
+            });
+        }
+    })();
+
+    // ===== КАЛЬКУЛЯТОР =====
+    (function () {
+        'use strict';
+
+        const vehicleType = document.getElementById('calcVehicleType');
+        const workType = document.getElementById('calcWorkType');
+        const hours = document.getElementById('calcHours');
+        const parts = document.getElementById('calcParts');
+        const checkboxes = document.querySelectorAll('.calc-checks input[type="checkbox"]');
+        const totalEl = document.getElementById('calcTotal');
+        const detailEl = document.getElementById('calcDetail');
+        const applyBtn = document.getElementById('calcApplyBtn');
+
+        if (!vehicleType || !workType || !hours || !parts || !totalEl) return;
+
+        const MAX_SUM = 100000000;
+
+        function formatMoney(value) {
+            return Math.round(value).toLocaleString('ru-RU') + ' ₽';
+        }
+
+        function clampNumber(val, min, max) {
+            let n = Number(val);
+            if (isNaN(n)) n = min;
+            if (n < min) n = min;
+            if (n > max) n = max;
+            return n;
+        }
+
+        function calculate() {
+            const vType = parseFloat(vehicleType.value) || 1;
+            const wPrice = parseFloat(workType.value) || 0;
+            const h = clampNumber(hours.value, 1, 1000);
+            const p = clampNumber(parts.value, 0, MAX_SUM);
+
+            let base = (wPrice * vType) + (h * 2500);
+
+            let extras = 0;
+            const extrasList = [];
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    const price = parseFloat(cb.getAttribute('data-price')) || 0;
+                    extras += price;
+                    const label = cb.parentElement.textContent.trim().replace(/\s*\(\+.*\)/, '');
+                    extrasList.push(label);
+                }
+            });
+
+            let total = base + extras + p;
+            if (total < 0) total = 0;
+            if (total > MAX_SUM) total = MAX_SUM;
+
+            totalEl.textContent = formatMoney(total);
+
+            let detail = 'Работы: ' + formatMoney(wPrice * vType) +
+                         ' · Нормо-часы: ' + h + ' × 2 500 ₽ = ' + formatMoney(h * 2500);
+            if (p > 0) detail += ' · Запчасти: ' + formatMoney(p);
+            if (extras > 0) detail += ' · Доп. услуги: ' + formatMoney(extras) + ' (' + extrasList.join(', ') + ')';
+            detailEl.textContent = detail;
+        }
+
+        hours.addEventListener('input', function () {
+            if (this.value !== '') {
+                let v = clampNumber(this.value, 1, 1000);
+                this.value = v;
+            }
+            calculate();
+        });
+
+        parts.addEventListener('input', function () {
+            if (this.value !== '') {
+                let v = clampNumber(this.value, 0, MAX_SUM);
+                this.value = v;
+            }
+            calculate();
+        });
+
+        vehicleType.addEventListener('change', calculate);
+        workType.addEventListener('change', calculate);
+        checkboxes.forEach(cb => cb.addEventListener('change', calculate));
+
+        calculate();
+
+        applyBtn.addEventListener('click', function () {
+            const problemType = document.getElementById('problemType');
+            const description = document.getElementById('description');
+
+            const workVal = parseFloat(workType.value) || 0;
+            if (workVal >= 80000) {
+                problemType.value = 'engine';
+            } else if (workVal >= 50000) {
+                problemType.value = 'transmission';
+            } else if (workVal >= 30000) {
+                problemType.value = 'suspension';
+            } else if (workVal >= 15000) {
+                problemType.value = 'electrics';
+            } else {
+                problemType.value = 'other';
+            }
+
+            const totalText = totalEl.textContent;
+            const detailText = detailEl.textContent;
+            const currentDesc = description.value.trim();
+
+            const calcNote = '📋 Расчёт из калькулятора: ' + totalText + '. ' + detailText + '.';
+
+            if (currentDesc) {
+                description.value = currentDesc + '\n\n' + calcNote;
+            } else {
+                description.value = calcNote;
+            }
+
+            document.getElementById('form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            description.style.transition = 'box-shadow 0.3s';
+            description.style.boxShadow = '0 0 0 4px rgba(230, 51, 41, 0.3)';
+            setTimeout(function () {
+                description.style.boxShadow = '';
+            }, 2000);
+        });
+    })();
+
+    // ===== ВИДЖЕТ: ЗОНЫ ОБСЛУЖИВАНИЯ (САРАТОВСКАЯ ОБЛАСТЬ) =====
+    (function () {
+        'use strict';
+
+        const map = document.getElementById('zonesMap');
+        if (!map) return;
+
+        const rings = map.querySelectorAll('.zone-ring');
+        const rows = document.querySelectorAll('.zone-row');
+        const tooltip = document.getElementById('zoneTooltip');
+        const ttTime = tooltip.querySelector('.tt-time');
+        const ttTitle = tooltip.querySelector('strong');
+        const ttSub = tooltip.querySelector('span');
+
+        const zoneData = {
+            '30': { title: 'Зона 30 минут', sub: 'Саратов, Энгельс и пригород (в пределах 20 км)', time: '~30 минут' },
+            '60': { title: 'Зона 60 минут', sub: 'Балаково, Маркс, Аткарск, Красноармейск', time: '~60 минут' },
+            '90': { title: 'Зона 90 минут', sub: 'Вольск, Пугачёв, Балашов, Ртищево и трассы', time: '~90 минут' }
+        };
+
+        function showZone(zone) {
+            const data = zoneData[zone];
+            if (!data) return;
+
+            ttTitle.textContent = data.title;
+            ttSub.textContent = data.sub;
+            ttTime.textContent = data.time;
+            ttTime.style.display = 'inline-block';
+            tooltip.classList.add('show');
+
+            rings.forEach(r => r.classList.toggle('active', r.dataset.zone === zone));
+            rows.forEach(r => r.classList.toggle('active', r.dataset.zone === zone));
+        }
+
+        function hideZone() {
+            tooltip.classList.remove('show');
+            rings.forEach(r => r.classList.remove('active'));
+            rows.forEach(r => r.classList.remove('active'));
+        }
+
+        rings.forEach(ring => {
+            ring.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showZone(ring.dataset.zone);
+            });
+            ring.addEventListener('mouseenter', () => showZone(ring.dataset.zone));
+        });
+
+        rows.forEach(row => {
+            row.addEventListener('click', () => showZone(row.dataset.zone));
+            row.addEventListener('mouseenter', () => showZone(row.dataset.zone));
+        });
+
+        map.addEventListener('click', (e) => {
+            if (!e.target.closest('.zone-ring') && !e.target.closest('.map-pin')) hideZone();
+        });
+
+        const pins = map.querySelectorAll('.map-pin');
+        pins.forEach(pin => {
+            pin.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const rect = map.getBoundingClientRect();
+                const pinRect = pin.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                const px = pinRect.left + pinRect.width / 2;
+                const py = pinRect.top + pinRect.height / 2;
+                const dist = Math.hypot(px - cx, py - cy) / (rect.width / 2);
+                let zone = '90';
+                if (dist < 0.2) zone = '30';
+                else if (dist < 0.35) zone = '60';
+                showZone(zone);
+            });
+        });
+
+        const observer2 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    map.style.opacity = '1';
+                    map.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        map.style.opacity = '0';
+        map.style.transform = 'translateY(30px)';
+        map.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+        observer2.observe(map);
+    })();
+
+    // ===== ФОРМА КОРПОРАТИВНОГО ОБСЛУЖИВАНИЯ =====
+    (function () {
+        'use strict';
+
+        const corpForm = document.getElementById('corpForm');
+        const corpConfirmation = document.getElementById('corpConfirmation');
+        if (!corpForm) return;
+
+        const corpPhone = document.getElementById('corpPhone');
+        const corpInn = document.getElementById('corpInn');
+
+        corpPhone.addEventListener('input', function (e) {
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.length > 0 && val[0] === '8') val = '7' + val.slice(1);
+            if (val[0] !== '7') val = '7' + val;
+            let res = '+7';
+            if (val.length > 1) res += ' (' + val.slice(1, 4);
+            if (val.length >= 5) res += ') ' + val.slice(4, 7);
+            if (val.length >= 8) res += '-' + val.slice(7, 9);
+            if (val.length >= 10) res += '-' + val.slice(9, 11);
+            e.target.value = res;
+        });
+
+        corpInn.addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 12);
+        });
+
+        corpForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const company = document.getElementById('corpCompany').value.trim();
+            const inn = document.getElementById('corpInn').value.trim();
+            const contact = document.getElementById('corpContact').value.trim();
+            const phone = document.getElementById('corpPhone').value.trim();
+            const fleet = document.getElementById('corpFleet').value;
+
+            if (!company || !inn || !contact || !phone || !fleet) {
+                alert('Пожалуйста, заполните обязательные поля: компания, ИНН, контактное лицо, телефон и размер парка.');
+                return;
+            }
+
+            if (inn.length !== 10 && inn.length !== 12) {
+                alert('ИНН должен содержать 10 или 12 цифр.');
+                return;
+            }
+
+            if (phone.replace(/\D/g, '').length < 11) {
+                alert('Пожалуйста, введите корректный номер телефона.');
+                return;
+            }
+
+            corpForm.style.display = 'none';
+            corpConfirmation.classList.add('active');
+            document.getElementById('corporate').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    })();
+</script>
+
+</body>
+</html>
